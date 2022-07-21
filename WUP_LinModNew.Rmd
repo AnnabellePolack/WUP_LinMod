@@ -36,10 +36,13 @@ data <- read.csv(file="https://onlinestatbook.com/case_studies_rvls/physical_str
 
 ### scatterplot
 ```{r}
-plot(SIMS~ARM,data=data)
+basicNN <- ggplot(data,aes(y=SIMS,x=ARM))
+```
+```{r}
+basicNN + geom_point()
 ```
 
-It looks like there is an obvious linear relationship between SIMS and ARM.
+It looks like there is an obvious linear relationship between SIMS and ARM. This means that the greater the arm strength of the worker, the better they preform on the simulations that were used to assess job performance. 
 
 ### Numerical results
 ```{r}
@@ -49,13 +52,30 @@ cor(SIMS~ARM,data=data)
 The correlation coefficient is somewhat close to 1 showing a decent linear relationship between SIMS and ARM. 
 
 ### Inferential  (Build model.1)
-
+```{r}
+model.1 <- lm(SIMS~ARM,data=data)
+summary.lm(model.1)
+```
 
 
 #### Predict at target point
 
+```{r}
+Targetpoint<- data.frame(ARM=88, GRIP=94)
+```
+
+```{r}
+predict(model.1, Targetpoint, interval = "prediction")
+
+```
+
+This predicted the value we would get from model 1 if the target point for ARM is 88 and GRIP is 94. But given that this model only makes use of ARM, it disreguards the target point value for GRIP.
 
 #### scatterplot with model fit
+
+```{r}
+basicNN + geom_point()+geom_lm()
+```
   
 
 ## Model 2 SIM~GRIP
