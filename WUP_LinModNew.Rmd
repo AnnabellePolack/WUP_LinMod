@@ -49,7 +49,7 @@ It looks like there is an obvious linear relationship between SIMS and ARM. This
 cor(SIMS~ARM,data=data)
 ```
 
-The correlation coefficient is somewhat close to 1 showing a decent linear relationship between SIMS and ARM. 
+The value above provides the specific correlation coefficient on the relationship between SIMS and ARM. The value 0.686 is quite decent in showing the positive linear relationship between SIMS and ARM. 
 
 ### Inferential  (Build model.1)
 ```{r}
